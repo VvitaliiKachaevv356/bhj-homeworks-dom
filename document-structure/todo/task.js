@@ -2,8 +2,8 @@ const tasksInput = document.getElementById("task__input");
 const tasksAddButton = document.getElementById("tasks__add");
 const tasksList = document.getElementById("tasks__list");
 function taskAdd(e) {
+  e.preventDefault();
   if (tasksInput.value.trim()) {
-    e.preventDefault();
     tasksList.insertAdjacentHTML(
       "beforeend",
       `<div class="task">
@@ -14,11 +14,8 @@ function taskAdd(e) {
     tasksInput.value = "";
   }
 }
-tasksAddButton.addEventListener("click", taskAdd);
-tasksInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    taskAdd(e);
-  }
+tasksAddButton.addEventListener("click", (e) => {
+  taskAdd(e);
 });
 tasksList.addEventListener("click", (e) => {
   if (e.target.classList.contains("task__remove")) {
